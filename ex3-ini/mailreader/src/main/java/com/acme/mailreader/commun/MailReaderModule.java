@@ -1,9 +1,13 @@
 package com.acme.mailreader.commun;
 
+import com.acme.mailreader.infrastructure.InMemoryMailSender;
+import com.acme.mailreader.infrastructure.SmtpMailSender;
+import com.acme.mailreader.service.MailSender;
 import com.google.inject.AbstractModule;
 
 /**
- * Module de configuration Guice 
+ * Module de configuration Guice
+ * 
  * @author bflorat
  *
  */
@@ -19,10 +23,14 @@ public class MailReaderModule extends AbstractModule {
 	@Override
 	protected void configure() {
 
+				
 		if (production) {
-			//TODO
+			
+			bind(MailSender.class).to(SmtpMailSender.class);
+			
 		} else {
-			//TODO
+			
+			bind(MailSender.class).to(InMemoryMailSender.class);
 
 		}
 	}

@@ -38,6 +38,12 @@ public class MailComparator implements Comparator<Mail> {
 		if (mail1.getDate() != null && mail2.getDate() == null) {
 			return PREMIER_PLUS_GRAND;
 		}
+		if(mail1.getDate().isBefore(mail2.getDate())){
+			return PREMIER_PLUS_PETIT;
+		}
+		if(mail2.getDate().isBefore(mail1.getDate())){
+			return PREMIER_PLUS_GRAND;
+		}
 		return mail1.getDate().compareTo(mail2.getDate());
 	}
 
